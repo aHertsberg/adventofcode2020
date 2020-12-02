@@ -1,11 +1,11 @@
 def count():
     matches = 0
 
-    for row in open('input.txt', 'r'):
+    for row in open("input.txt", "r"):
         row = row.rstrip()
-        parts = row.split(' ')
+        parts = row.split(" ")
 
-        numbers = parts[0].split('-')
+        numbers = parts[0].split("-")
         minimum = int(numbers[0])
         maximum = int(numbers[1])
 
@@ -21,18 +21,17 @@ def count():
         if count >= minimum and count <= maximum:
             matches += 1
 
-    return(matches)
+    return matches
 
 
 def unique_position():
     matches = 0
 
- 
-    for row in open('input.txt', 'r'):
+    for row in open("input.txt", "r"):
         row = row.rstrip()
-        parts = row.split(' ')
+        parts = row.split(" ")
 
-        numbers = parts[0].split('-')
+        numbers = parts[0].split("-")
         first = int(numbers[0])
         second = int(numbers[1])
 
@@ -45,12 +44,10 @@ def unique_position():
             legit = not legit
         if pw[second - 1] == character:
             legit = not legit
-        
         if legit:
             matches += 1
 
-    return matches 
-
+    return matches
 
 
 print(unique_position())
