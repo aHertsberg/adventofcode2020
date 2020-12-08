@@ -1,6 +1,3 @@
-import re
-
-
 def get_bags(bags, bag_type, money_bag):
     contains = bags[bag_type]
     contains_money_bag = False
@@ -14,6 +11,14 @@ def get_bags(bags, bag_type, money_bag):
             if get_bags(bags, bag, money_bag):
                 contains_money_bag = True
     return contains_money_bag
+
+def get_count(bags, bag_type):
+    contains = bags[bag_type]
+    counter = 1 # The bags themselves also have to be contained...
+    if contains:
+        for count, bag in contains:
+            counter += count*get_count(bags, bag)
+    return counter
 
 
 with open("input.txt", "r") as f:
@@ -35,10 +40,10 @@ for line in lines:
         bag_kind = ' '.join(split[1:-1])
         bags[key].append((n, bag_kind))
 
-print(bags)
 count = 0
 for bag_type in bags.keys():
-    print(bag_type)
     if get_bags(bags, bag_type, 'shiny gold'):
         count += 1
 print(count - 1)
+
+print(get_count(bags, 'shiny gold') - 1) # ...except for the gold shiny bag
