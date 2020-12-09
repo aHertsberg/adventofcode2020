@@ -16,5 +16,22 @@ for i in range(len(lines)):
     if i >= 25:
         pair_state = pair_exists(lines[i], lines[i - 25 : i])
         if pair_state == False:
-            print(lines[i])
+            terminating_value = lines[i]
             break
+
+
+print(terminating_value)
+lower = 0
+upper = 1
+segment_sum = sum(lines[lower:upper])
+while segment_sum != terminating_value:
+    if segment_sum < terminating_value:
+        upper += 1
+    else:
+        lower += 1
+    segment_sum = sum(lines[lower:upper])
+
+segment = lines[lower:upper]
+smallest = min(segment)
+largest = max(segment)
+print(smallest + largest)
